@@ -1,13 +1,34 @@
 var pw_div;
 var passwords = [];
 
+function generateDataJetObject(password)
+{
+	fields = [];
+	for(const field in password)
+	{
+		f_entry = { t: "S", v: password[field], n: field };
+		fields.push(f_entry);
+	}
+	dataJetObject = {fields};
+	return dataJetObject;
+}
+
 function savePasswordsAsZip(passwords, filename)
 {
 	var pwJetObject = {};
 	pwJetObject.content = passwords;
 	
 	var zip = new JSZip();
+	
 	zip.file("BlankyBlankPasswords.jet", JSON.stringify(pwJetObject));
+	
+	var pw_folder = zip.folder("BlankyBlankPasswords");
+	for(i in passwords)
+	{
+		var cur_folder = pw_folder.folder(passwords[i].id);
+		cur_folder.file("data.jet", JSON.stringify(generateDataJetObject(passwords[i])));
+	}
+	
 	zip.generateAsync({type:"blob"})
 	.then(function(content) {
 		saveAs(content, filename);
