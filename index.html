@@ -2,39 +2,62 @@
 	<head>
 		<script type="text/javascript" src="FileSaver.min.js"></script>
 		<script type="text/javascript" src="jszip.min.js"></script>
-		<script>
-			function savePasswordsAsZip(passwords, filename)
-			{
-				var pwJetObject = {};
-				pwJetObject.content = passwords;
-				
-				var zip = new JSZip();
-				zip.file("BlankyBlankPasswords.jet", JSON.stringify(pwJetObject));
-				zip.generateAsync({type:"blob"})
-				.then(function(content) {
-					saveAs(content, filename);
-				});
-			}
-		</script>
+		<script type="text/javascript" src="blather_round.js"></script>
 	</head>
-	<body>
-		Hello, World~!! ^-^
+	<body onload="initPasswordEditor()">
+		<div id="pw_editor">
+			<table>
+				<tr>
+					<td>Name: </td>
+					<td><input type="text" value="Housepets!" id="pw_name"></input></td>
+				</tr>
+				<tr>
+					<td>Category: </td>
+					<td>
+						<select id="pw_category" style="width:100%">
+							<option value="thing">Thing</option>
+							<option value="place">Place</option>
+							<option value="persion">Person</option>
+							<option value="story">Story</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Diffuculty: </td>
+					<td>
+						<select id="pw_difficulty" style="width:100%">
+							<option value="easy">Easy</option>
+							<option value="medium">Medium</option>
+							<option value="hard">Hard</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Alternate Spellings: </td>
+					<td><textarea id="pw_alternate" rows="4"></textarea></td>
+				</tr>
+				<tr>
+					<td><button type="button" onclick="pw_div.savePassword()">Apply Changes</button></td>
+					<td><button type="button" onclick="savePasswordsAsZip(passwords, 'test.zip')">Save Pack</button></td>
+				</tr>
+			</table>
+		</div>
 		<script>
-			var passwords = [];
+			
 			
 			var pwHousepets = {};
 			pwHousepets.alternateSpellings = ["housepets", "house pets", "house pets!"];
 			pwHousepets.category = "story";
 			pwHousepets.difficulty = "medium";
 			pwHousepets.forbiddenWords = [];
-			pwHousepets.password = "HousePets!";
+			pwHousepets.password = "housepets!";
 			pwHousepets.id = "80000";
 			pwHousepets.subcategory = "";
 			pwHousepets.tailoredWords = [];
 			pwHousepets.us = false;
 			passwords.push(pwHousepets);
 		
-			savePasswordsAsZip(passwords, "custom-pack.zip");
+			//savePasswordsAsZip(passwords, "custom-pack.zip");
 		</script>
 	</body>
 </html>
