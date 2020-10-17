@@ -4,7 +4,7 @@
 		<script type="text/javascript" src="jszip.min.js"></script>
 		<script type="text/javascript" src="blather_round.js"></script>
 	</head>
-	<body onload="initPasswordEditor()">
+	<body onload="initPasswordEditor(); pw_list.updatePassword(passwords[0]);">
 		<div id="pw_editor">
 			<table>
 				<tr>
@@ -38,23 +38,20 @@
 				</tr>
 				<tr>
 					<td><button type="button" onclick="pw_div.savePassword()">Apply Changes</button></td>
-					<td><button type="button" onclick="savePasswordsAsZip(passwords, 'test.zip')">Save Pack</button></td>
+					<td><button type="button" onclick="alert('not yet implemented')">Cancel Changes</button></td>
 				</tr>
 			</table>
 		</div>
+		<button type="button" onclick="savePasswordsAsZip(passwords, 'blather-round-custom-pack.zip');">Save Pack</button>
+		<br/><br/>
+		<div id="pw_list">
+		</div>
 		<script>
-			
-			
-			var pwHousepets = {};
+			var pwHousepets = new PasswordEntry;
 			pwHousepets.alternateSpellings = ["housepets", "house pets", "house pets!"];
 			pwHousepets.category = "story";
 			pwHousepets.difficulty = "medium";
-			pwHousepets.forbiddenWords = [];
 			pwHousepets.password = "housepets!";
-			pwHousepets.id = "80000";
-			pwHousepets.subcategory = "";
-			pwHousepets.tailoredWords = [];
-			pwHousepets.us = false;
 			passwords.push(pwHousepets);
 		
 			//savePasswordsAsZip(passwords, "custom-pack.zip");

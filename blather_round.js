@@ -1,4 +1,5 @@
-var pw_div;
+var pw_div = null;
+var pw_list = null;
 var passwords = [];
 
 function uuidv4() {
@@ -72,6 +73,17 @@ function savePasswordsAsZip(passwords, filename)
 	});
 }
 
+function findPasswordIndex(id)
+{
+	for(i in passwords)
+	{
+		if(passwords[i].id == id)
+			return i;
+	}
+	
+	return -1;
+}
+
 function initPasswordEditor()
 {
 	pw_div = document.getElementById("pw_editor");
@@ -80,6 +92,30 @@ function initPasswordEditor()
 	pw_div.in_difficulty = document.getElementById("pw_difficulty");
 	pw_div.in_alternate = document.getElementById("pw_alternate");
 	pw_div.m_password = null;
+	
+	pw_list = document.getElementById("pw_list");
+	pw_list.onclick = function(e)
+	{
+		if(e.target.tagName == 'BUTTON')
+		{
+			var pw_index = findPasswordIndex(e.target.id);
+			if(pw_index != -1)
+				pw_div.openPassword(passwords[pw_index]);
+		}
+	}
+	
+	pw_list.updatePassword = function(password)
+	{
+		var btn = document.getElementById(password.id);
+		if(!btn)
+		{
+			btn = document.createElement("button");
+			this.appendChild(btn);
+		}
+		
+		btn.innerHTML = password.password;
+		btn.id = password.id;
+	}
 	
 	pw_div.openPassword = function(password)
 	{
@@ -98,6 +134,8 @@ function initPasswordEditor()
 		this.m_password.category = this.in_category.value;
 		this.m_password.difficulty = this.in_difficulty.value;
 		this.m_password.alternateSpellings = this.in_alternate.value.split("\n");
+		
+		pw_list.updatePassword(this.m_password);
 	}
 	
 	pw_div.openPassword(passwords[0]);
