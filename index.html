@@ -36,12 +36,10 @@
 					<td>Alternate Spellings: </td>
 					<td><textarea id="pw_alternate" rows="4"></textarea></td>
 				</tr>
-				<tr>
-					<td><button type="button" onclick="pw_div.savePassword()">Apply Changes</button></td>
-					<td><button type="button" onclick="alert('not yet implemented')">Cancel Changes</button></td>
-				</tr>
 			</table>
 		</div>
+		<button type="button" onclick="pw_div.savePassword()">Apply Changes</button>
+		<button type="button" onclick="pw_div.newPassword()">New Password</button>
 		<button type="button" onclick="savePasswordsAsZip(passwords, 'blather-round-custom-pack.zip');">Save Pack</button>
 		<br/><br/>
 		<div id="pw_list">

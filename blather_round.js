@@ -128,13 +128,21 @@ function initPasswordEditor()
 			this.in_alternate.value += password.alternateSpellings[i] + "\n";
 	}
 	
+	pw_div.newPassword = function()
+	{
+		var pw_name = prompt("Please enter password name", "tv");
+		this.openPassword(new PasswordEntry(pw_name));
+	}
+	
 	pw_div.savePassword = function()
 	{
-		this.m_password.password = this.in_name.value;
+		this.m_password.password = this.in_name.value.toLowerCase();
 		this.m_password.category = this.in_category.value;
 		this.m_password.difficulty = this.in_difficulty.value;
 		this.m_password.alternateSpellings = this.in_alternate.value.split("\n");
 		
+		if(findPasswordIndex(this.m_password) == -1)
+			passwords.push(this.m_password);
 		pw_list.updatePassword(this.m_password);
 	}
 	
