@@ -6,49 +6,52 @@
 		<script type="text/javascript" src="blather_round.js"></script>
 	</head>
 	<body onload="initPasswordEditor(); pw_list.updatePassword(passwords[0]);">
-		<div id="pw_editor">
-			<table>
-				<tr>
-					<td>Name: </td>
-					<td><input type="text" value="Housepets!" id="pw_name"></input></td>
-				</tr>
-				<tr>
-					<td>Category: </td>
-					<td>
-						<select id="pw_category" style="width:100%">
-							<option value="thing">Thing</option>
-							<option value="place">Place</option>
-							<option value="person">Person</option>
-							<option value="story">Story</option>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<td>Diffuculty: </td>
-					<td>
-						<select id="pw_difficulty" style="width:100%">
-							<option value="easy">Easy</option>
-							<option value="medium">Medium</option>
-							<option value="hard">Hard</option>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<td>Alternate Spellings: </td>
-					<td><textarea id="pw_alternate" rows="4"></textarea></td>
-				</tr>
-			</table>
-		</div>
-		<button type="button" onclick="pw_div.savePassword()">Apply Changes</button>
-		<button type="button" onclick="pw_div.deletePassword()">Remove Password</button>
-		<button type="button" onclick="pw_div.newPassword()">New Password</button>
-		<button type="button" onclick="savePasswordsAsZip(passwords, 'blather-round-custom-pack.zip');">Save Pack</button>
-		
-		<button type="button" onclick="pw_fileselect.click()">Open File</button>
-		<input type="file" id="pw_fileselect" value="Load Pack" accept=".jet" style="display: none"></input>
+		<div id="content">
+			<h2>Gira's <i>Blather Round</i> Content Editor</h2>
+			<div id="pw_editor">
+				<table>
+					<tr>
+						<td>Name: </td>
+						<td><input type="text" value="Housepets!" id="pw_name"></input></td>
+					</tr>
+					<tr>
+						<td>Category: </td>
+						<td>
+							<select id="pw_category" style="width:100%">
+								<option value="thing">Thing</option>
+								<option value="place">Place</option>
+								<option value="person">Person</option>
+								<option value="story">Story</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>Diffuculty: </td>
+						<td>
+							<select id="pw_difficulty" style="width:100%">
+								<option value="easy">Easy</option>
+								<option value="medium">Medium</option>
+								<option value="hard">Hard</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>Alternate Spellings: </td>
+						<td><textarea id="pw_alternate" rows="4"></textarea></td>
+					</tr>
+				</table>
+			</div>
+			<button type="button" onclick="pw_div.savePassword()">Apply Changes</button>
+			<button type="button" onclick="pw_div.deletePassword()">Remove Password</button>
+			<button type="button" onclick="pw_div.newPassword()">New Password</button>
+			<button type="button" onclick="savePasswordsAsZip(passwords, 'blather-round-custom-pack.zip');">Save Pack</button>
 			
-		<h4>Click a button below to edit a password</h4>
-		<div id="pw_list">
+			<button type="button" onclick="pw_fileselect.click()">Open File</button>
+			<input type="file" id="pw_fileselect" value="Load Pack" accept=".jet" style="display: none"></input>
+				
+			<h4>Click a button below to edit a password</h4>
+			<div id="pw_list">
+			</div>
 		</div>
 		<script>
 			var pwHousepets = new PasswordEntry;
