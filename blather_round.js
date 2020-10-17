@@ -170,7 +170,7 @@ function initPasswordEditor()
 	
 	pw_div.savePassword = function()
 	{
-		this.m_password.password = this.in_name.value.toLowerCase();
+		this.m_password.password = this.in_name.value;
 		this.m_password.category = this.in_category.value;
 		this.m_password.difficulty = this.in_difficulty.value;
 		this.m_password.alternateSpellings = this.in_alternate.value.split("\n");
