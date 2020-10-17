@@ -1,16 +1,34 @@
 var pw_div;
 var passwords = [];
 
+function DataJetObject()
+{
+	this.fields = [
+		{t: "S", v: "", n: "Password"},
+		{t: "S", v: "", n: "Category"},
+		{t: "S", v: "", n: "Subcategory"},
+		{t: "S", v: "", n: "Difficulty"},
+		{t: "S", v: "", n: "ForbiddenWords"},
+		{t: "S", v: "", n: "AlternateSpellings"}
+	];
+}
+
 function generateDataJetObject(password)
 {
-	fields = [];
-	for(const field in password)
+	rDataJetObject = new DataJetObject;
+	
+	for(i in rDataJetObject.fields)
 	{
-		f_entry = { t: "S", v: password[field], n: field };
-		fields.push(f_entry);
+		var fName = rDataJetObject.fields[i].n;
+		fName = fName[0].toLowerCase() + fName.substring(1);
+		
+		if(Array.isArray(password[fName]))
+			rDataJetObject.fields[i].v = password[fName].join("|");
+		else
+			rDataJetObject.fields[i].v = password[fName];
 	}
-	dataJetObject = {fields};
-	return dataJetObject;
+	
+	return rDataJetObject;
 }
 
 function savePasswordsAsZip(passwords, filename)
@@ -20,13 +38,13 @@ function savePasswordsAsZip(passwords, filename)
 	
 	var zip = new JSZip();
 	
-	zip.file("BlankyBlankPasswords.jet", JSON.stringify(pwJetObject));
+	zip.file("BlankyBlankPasswords.jet", JSON.stringify(pwJetObject, null, 1));
 	
 	var pw_folder = zip.folder("BlankyBlankPasswords");
 	for(i in passwords)
 	{
 		var cur_folder = pw_folder.folder(passwords[i].id);
-		cur_folder.file("data.jet", JSON.stringify(generateDataJetObject(passwords[i])));
+		cur_folder.file("data.jet", JSON.stringify(generateDataJetObject(passwords[i]), null, 1));
 	}
 	
 	zip.generateAsync({type:"blob"})
