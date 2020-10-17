@@ -125,6 +125,7 @@ function initPasswordEditor()
 	pw_div = document.getElementById("pw_editor");
 	pw_div.in_name = document.getElementById("pw_name");
 	pw_div.in_category = document.getElementById("pw_category");
+	pw_div.in_subcategory = document.getElementById("pw_subcategory");
 	pw_div.in_difficulty = document.getElementById("pw_difficulty");
 	pw_div.in_alternate = document.getElementById("pw_alternate");
 	pw_div.m_password = null;
@@ -173,6 +174,7 @@ function initPasswordEditor()
 		this.m_password = password;
 		this.in_name.value = password.password;
 		this.in_category.value = password.category;
+		this.in_subcategory.value = password.subcategory;
 		this.in_difficulty.value = password.difficulty;
 		this.in_alternate.value = "";
 		for(i in password.alternateSpellings)
@@ -187,8 +189,9 @@ function initPasswordEditor()
 	
 	pw_div.savePassword = function()
 	{
-		this.m_password.password = this.in_name.value;
+		this.m_password.password = this.in_name.value.trim();
 		this.m_password.category = this.in_category.value;
+		this.m_password.subcategory = this.in_subcategory.value.trim();
 		this.m_password.difficulty = this.in_difficulty.value;
 		this.m_password.alternateSpellings = this.in_alternate.value.split("\n");
 		
