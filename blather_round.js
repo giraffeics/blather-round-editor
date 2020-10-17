@@ -105,12 +105,18 @@ async function loadPasswordsJSON(infile)
 	var inObject = JSON.parse(await infile.text());
 	
 	if(inObject.content)
+	{
+		var append = confirm("Combine file with existing passwords?");
+		if(!append)
+			pw_list.empty();
+		
 		for(i in inObject.content)
 		{
 			var password = inObject.content[i];
 			passwords.push(password);
 			pw_list.updatePassword(password);
 		}
+	}
 }
 
 function initPasswordEditor()
@@ -167,6 +173,12 @@ function initPasswordEditor()
 		var btn = document.getElementById(password.id);
 		if(btn)
 			btn.remove();
+	}
+	
+	pw_list.empty = function()
+	{
+		passwords = [];
+		this.innerHTML = "";
 	}
 	
 	pw_div.openPassword = function(password)
