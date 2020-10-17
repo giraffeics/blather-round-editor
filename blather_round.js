@@ -1,6 +1,7 @@
 var pw_div = null;
 var pw_list = null;
 var pw_fileselect = null;
+var status_p = null;
 var passwords = [];
 
 function uuidv4() {
@@ -54,6 +55,8 @@ function generateDataJetObject(password)
 
 function savePasswordsAsZip(passwords, filename)
 {
+	setStatus("Generating Custom Pack Files...");
+	
 	var pwJetObject = {};
 	pwJetObject.content = passwords;
 	
@@ -71,6 +74,7 @@ function savePasswordsAsZip(passwords, filename)
 	zip.generateAsync({type:"blob"})
 	.then(function(content) {
 		saveAs(content, filename);
+		setStatus();
 	});
 }
 
@@ -83,6 +87,17 @@ function findPasswordIndex(id)
 	}
 	
 	return -1;
+}
+
+function setStatus(message)
+{
+	if(message)
+	{
+		status_p.style.display = "";
+		status_p.innerHTML = message;
+	}
+	else
+		status_p.style.display = "none";
 }
 
 async function loadPasswordsJSON(infile)
@@ -100,6 +115,8 @@ async function loadPasswordsJSON(infile)
 
 function initPasswordEditor()
 {
+	status_p = document.getElementById("status_p");
+	
 	pw_fileselect = document.getElementById("pw_fileselect");
 	pw_fileselect.addEventListener("change", (e) => {
 		loadPasswordsJSON(pw_fileselect.files[0]);
