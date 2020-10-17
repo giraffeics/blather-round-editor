@@ -140,6 +140,17 @@ function initPasswordEditor()
 		btn.id = password.id;
 	}
 	
+	pw_list.removePassword = function(password)
+	{
+		var index = findPasswordIndex(password.id);
+		if(index != -1)
+			passwords.splice(index, 1);
+		
+		var btn = document.getElementById(password.id);
+		if(btn)
+			btn.remove();
+	}
+	
 	pw_div.openPassword = function(password)
 	{
 		this.m_password = password;
@@ -172,6 +183,11 @@ function initPasswordEditor()
 			}
 		
 		pw_list.updatePassword(this.m_password);
+	}
+	
+	pw_div.deletePassword = function()
+	{
+		pw_list.removePassword(this.m_password);
 	}
 	
 	pw_div.openPassword(passwords[0]);
