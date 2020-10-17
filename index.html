@@ -1,5 +1,6 @@
 <html>
 	<head>
+		<link rel="stylesheet" href="style.css"></link>
 		<script type="text/javascript" src="FileSaver.min.js"></script>
 		<script type="text/javascript" src="jszip.min.js"></script>
 		<script type="text/javascript" src="blather_round.js"></script>
@@ -41,6 +42,10 @@
 		<button type="button" onclick="pw_div.savePassword()">Apply Changes</button>
 		<button type="button" onclick="pw_div.newPassword()">New Password</button>
 		<button type="button" onclick="savePasswordsAsZip(passwords, 'blather-round-custom-pack.zip');">Save Pack</button>
+		
+		<button type="button" onclick="document.getElementById('open-file').click()">Open File</button>
+		<input type="file" id="open-file" value="Load Pack" accept=".jet" style="display: none"></input>
+			
 		<h4>Click a button below to edit a password</h4>
 		<div id="pw_list">
 		</div>
@@ -51,6 +56,7 @@
 			pwHousepets.difficulty = "medium";
 			pwHousepets.password = "housepets!";
 			passwords.push(pwHousepets);
+			
 		
 			//savePasswordsAsZip(passwords, "custom-pack.zip");
 		</script>
