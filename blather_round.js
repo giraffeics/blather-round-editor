@@ -125,6 +125,10 @@ function initPasswordEditor()
 	
 	pw_list.updatePassword = function(password)
 	{
+		var index = findPasswordIndex(password.id);
+		if(index == -1)
+			passwords.push(password);
+		
 		var btn = document.getElementById(password.id);
 		if(!btn)
 		{
@@ -167,8 +171,6 @@ function initPasswordEditor()
 				i--;
 			}
 		
-		if(findPasswordIndex(this.m_password.id) == -1)
-			passwords.push(this.m_password);
 		pw_list.updatePassword(this.m_password);
 	}
 	
