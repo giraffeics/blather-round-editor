@@ -1,5 +1,6 @@
 var pw_div = null;
 var pw_list = null;
+var pw_fileselect = null;
 var passwords = [];
 
 function uuidv4() {
@@ -84,8 +85,26 @@ function findPasswordIndex(id)
 	return -1;
 }
 
+async function loadPasswordsJSON(infile)
+{
+	var inObject = JSON.parse(await infile.text());
+	
+	if(inObject.content)
+		for(i in inObject.content)
+		{
+			var password = inObject.content[i];
+			passwords.push(password);
+			pw_list.updatePassword(password);
+		}
+}
+
 function initPasswordEditor()
 {
+	pw_fileselect = document.getElementById("pw_fileselect");
+	pw_fileselect.addEventListener("change", (e) => {
+		loadPasswordsJSON(pw_fileselect.files[0]);
+	});
+	
 	pw_div = document.getElementById("pw_editor");
 	pw_div.in_name = document.getElementById("pw_name");
 	pw_div.in_category = document.getElementById("pw_category");
