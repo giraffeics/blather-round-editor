@@ -141,7 +141,14 @@ function initPasswordEditor()
 		this.m_password.difficulty = this.in_difficulty.value;
 		this.m_password.alternateSpellings = this.in_alternate.value.split("\n");
 		
-		if(findPasswordIndex(this.m_password) == -1)
+		for(var i = 0; i < this.m_password.alternateSpellings.length; i++)
+			if(this.m_password.alternateSpellings[i].length == 0)
+			{
+				this.m_password.alternateSpellings.splice(i, 1);
+				i--;
+			}
+		
+		if(findPasswordIndex(this.m_password.id) == -1)
 			passwords.push(this.m_password);
 		pw_list.updatePassword(this.m_password);
 	}
