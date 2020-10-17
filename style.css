@@ -21,7 +21,7 @@ button{
 	text-transform: none;
 	
 	background-color: #EDC6A2;
-	border: none;
+	border: 1px dashed black;
 	border-radius: 0.2em;
 	margin: 0.15em;
 }
