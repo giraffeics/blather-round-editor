@@ -45,6 +45,17 @@ h1, h2, h3, h4, h5, h6{
 	display: inline-block;
 }
 
+.text-section{
+	border-radius: 0.2em;
+	padding-left: 1em;
+	padding-right: 1em;
+	background-color: #FFFFFF;
+	display: inline-block;
+	max-width:80%;
+	font-variant: none;
+	text-align: justify;
+}
+
 #content{
 	max-width: 70%;
 	margin-left:auto;
