@@ -12,7 +12,7 @@
 				<table>
 					<tr>
 						<td>Name: </td>
-						<td><input type="text" value="Housepets!" id="pw_name" style="width:100%;"></input></td>
+						<td><input type="text" id="pw_name" style="width:100%;"></input></td>
 					</tr>
 					<tr>
 						<td>Category: </td>
@@ -62,12 +62,13 @@
 			</div>
 		</div>
 		<script>
-			var pwHousepets = new PasswordEntry;
-			pwHousepets.alternateSpellings = ["housepets", "house pets", "house pets!"];
-			pwHousepets.category = "story";
-			pwHousepets.difficulty = "medium";
-			pwHousepets.password = "housepets!";
-			passwords.push(pwHousepets);
+			var pwBunny = new PasswordEntry;
+			pwBunny.alternateSpellings = ["buny", "rabbit", "rabbet", "rabet", "bun", "bunn"];
+			pwBunny.category = "thing";
+			pwBunny.subcategory = "animal";
+			pwBunny.difficulty = "medium";
+			pwBunny.password = "bunny";
+			passwords.push(pwBunny);
 			
 		
 			//savePasswordsAsZip(passwords, "custom-pack.zip");
